@@ -9,6 +9,7 @@ import ex02.zavdanya_2_2;
 * @author xone
 * @version 2.0
 */
+
 public class MainTest {
 /** Проверка основной функциональности класса {@linkplain ViewResult} */
 @Test
