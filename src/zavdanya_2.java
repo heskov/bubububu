@@ -1,6 +1,8 @@
 import java.io.*;
 
 class CalculationData implements Serializable {
+
+
     private double param1;
     private double param2;
     private double result;
