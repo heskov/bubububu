@@ -31,4 +31,8 @@ public class zavdanya_2_2 {
     public static boolean isOctal(char c) {
         return (c >= '0' && c <= '7');
     }
+    public void setXY(double d, double e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setXY'");
+    }
 }
