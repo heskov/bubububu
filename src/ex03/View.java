@@ -1,4 +1,4 @@
-package ex02;
+package ex03;
 public class View {
     public void displayResult() {
         // Method implementation

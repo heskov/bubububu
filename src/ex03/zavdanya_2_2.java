@@ -1,4 +1,4 @@
-package ex02;
+package ex03;
 
 public class zavdanya_2_2 {
     public static void main(String[] args) {
@@ -32,7 +32,6 @@ public class zavdanya_2_2 {
         return (c >= '0' && c <= '7');
     }
     public void setXY(double d, double e) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setXY'");
     }
 }

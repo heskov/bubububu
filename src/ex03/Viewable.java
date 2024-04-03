@@ -1,4 +1,4 @@
-package ex02;
+package ex03;
 
 import java.io.IOException;
 
