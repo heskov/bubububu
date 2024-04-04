@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Клас для відображення результатів і роботи з ними.
  */
-public class ViewResult {
+public class ViewResult implements View  {
     private static final String FNAME = "items.bin";
     private static final int DEFAULT_NUM = 10;
     private ArrayList<zavdanya_2_2> items = new ArrayList<zavdanya_2_2>();

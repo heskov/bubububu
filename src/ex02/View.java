@@ -1,10 +1,7 @@
 package ex02;
-public class View {
-    public void displayResult() {
-        // Method implementation
-    }
-}
+public interface View {
 
+}
 /** Product
  * (шаблон проектирования
  * Factory Method)<br>
