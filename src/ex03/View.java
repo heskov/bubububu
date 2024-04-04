@@ -1,29 +1,6 @@
 package ex03;
-public class View {
-    public void displayResult() {
-        // Method implementation
-    }
+
+public interface View {
+    public void viewInit();
+    public void viewShow();
 }
-
-/** Product
- * (шаблон проектирования
- * Factory Method)<br>
- * Интерфейс "фабрикуемых"
- * объектов<br>
- * Объявляет методы
- * отображения объектов
- * @author xone
- * @version 1.0
- */
-
-
-
-/** 
- * Product
- * (шаблон проєктування Factory Method)
- * Інтерфейс "фабрикованих" об'єктів.
- * Об'являє методи відображення об'єктів.
- * 
- * Автор: xone
- * Версія: 1.0
- */

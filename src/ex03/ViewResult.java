@@ -1,31 +1,38 @@
 package ex03;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ViewResult {
-
-    private Collection<zavdanya_2_2> items;
+public class ViewResult implements View {
+    private int number;
+    private Map<Character, Integer> digitCount;
 
     public ViewResult() {
-        items = new ArrayList<>();
+        this.digitCount = new HashMap<>();
     }
 
-    public void addItem(zavdanya_2_2 item) {
-        items.add(item);
+    @Override
+    public void viewInit() {
+        number = 123456789; // Приклад вхідного десяткового числа
+        countDigits();
     }
 
-    public Collection<zavdanya_2_2> getItems() {
-        return items;
+    private void countDigits() {
+        String numString = String.valueOf(number);
+        for (int i = 0; i < numString.length(); i++) {
+            char digit = numString.charAt(i);
+            if (Character.isDigit(digit)) {
+                int count = digitCount.getOrDefault(digit, 0);
+                digitCount.put(digit, count + 1);
+            }
+        }
     }
 
-    public void viewSave() {
-        // Логіка для збереження результату
+    @Override
+    public void viewShow() {
+        System.out.println("Digit Counts:");
+        for (char digit : digitCount.keySet()) {
+            System.out.println(digit + ": " + digitCount.get(digit));
+        }
     }
-
-    public void viewRestore() {
-        // Логіка для відновлення результату
-    }
-
-    // Додаткові методи
 }

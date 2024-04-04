@@ -1,4 +1,4 @@
-package ex03;
+package ex02;
 
 import org.junit.Test;
 
@@ -17,11 +17,11 @@ public class MainTest {
         } catch (InterruptedException e) {
             fail(e.getMessage()); 
         }
-        zavdanya_2_2 item = new zavdanya_2_2();
+        zavdanya_2_2 item = new zavdanya_2_2(0.0, 0.0); // Виправлено конструктор
         int ctr = 0;
         item.setXY(0.0, 0.0);
 
-        List<?> items = (List<?>) view.getItems();
+        List<?> items = (List<?>) view.getItems(); // Виправлено виклик методу
         assertTrue("expected:<" + item + "> but was:<" + items.get(ctr) + ">",
                     items.get(ctr).equals(item));
                 

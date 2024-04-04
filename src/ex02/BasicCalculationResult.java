@@ -1,4 +1,4 @@
-package ex03;
+package ex02;
 
 public class BasicCalculationResult {
     // Class implementation
