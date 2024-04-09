@@ -1,5 +1,4 @@
 package ex02;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,9 +20,11 @@ public class Main {
                     System.out.println("Історія порожня.");
                 } else {
                     System.out.println("Історія аналізу:");
-                    for (int i = 0; i < history.size(); i++) {
-                        System.out.println("Результати для числа " + (i + 1) + ":");
-                        System.out.println(history.get(i).getAnalysisResult());
+                    for (DecimalNumberAnalysis analysis : history) {
+                        DecimalNumberAnalysis historyAnalysis = new DecimalNumberAnalysis(analysis.getNumber());
+                        historyAnalysis.setDigitCounts(analysis.getDigitCounts());
+                        System.out.println("Результати для числа " + historyAnalysis.getNumber() + ":");
+                        System.out.println(historyAnalysis.getAnalysisResult());
                     }
                 }
                 continue;

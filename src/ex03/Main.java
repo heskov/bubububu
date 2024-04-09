@@ -1,40 +1,69 @@
 package ex03;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
+    private View view;
+
+    public Main(View view) {
+        this.view = view;
+    }
+
+    protected void menu() {
+        String s = null;
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        do {
+            do {
+                System.out.println("Enter command...");
+                System.out.print("'q'uit, 'v'iew, 'g'enerate, 's'ave, 'r'estore: ");
+                try {
+                    s = in.readLine();
+                } catch (IOException e) {
+                    System.out.println("Error: " + e);
+                    System.exit(0);
+                }
+            } while (s.length() != 1);
+            switch (s.charAt(0)) {
+                case 'q':
+                    System.out.println("Exit.");
+                    break;
+                case 'v':
+                    System.out.println("View current.");
+                    view.viewShow();
+                    break;
+                case 'g':
+                    System.out.println("Random generation.");
+                    view.viewInit();
+                    view.viewShow();
+                    break;
+                case 's':
+                    System.out.println("Save current.");
+                    try {
+                        view.viewSave();
+                    } catch (IOException e) {
+                        System.out.println("Serialization error: " + e);
+                    }
+                    view.viewShow();
+                    break;
+                case 'r':
+                    System.out.println("Restore last saved.");
+                    try {
+                        view.viewRestore();
+                    } catch (Exception e) {
+                        System.out.println("Serialization error: " + e);
+                    }
+                    view.viewShow();
+                    break;
+                default:
+                    System.out.println("Wrong command.");
+            }
+        } while (s.charAt(0) != 'q');
+    }
+
     public static void main(String[] args) {
-        int number = 111111; // Вхідне десяткове число
-        
-        Map<Character, Integer> decimalDigitCounts = countDigitOccurrences(number, 10);
-        Map<Character, Integer> hexadecimalDigitCounts = countDigitOccurrences(number, 16);
-        Map<Character, Integer> octalDigitCounts = countDigitOccurrences(number, 8);
-
-        System.out.println("Counts of decimal digits:");
-        printDigitCounts(decimalDigitCounts);
-        System.out.println("Counts of hexadecimal digits:");
-        printDigitCounts(hexadecimalDigitCounts);
-        System.out.println("Counts of octal digits:");
-        printDigitCounts(octalDigitCounts);
-    }
-
-    private static Map<Character, Integer> countDigitOccurrences(int number, int base) {
-        Map<Character, Integer> digitCounts = new HashMap<>();
-        
-        String numberString = Integer.toString(number, base);
-        
-        for (int i = 0; i < numberString.length(); i++) {
-            char digit = numberString.charAt(i);
-            digitCounts.put(digit, digitCounts.getOrDefault(digit, 0) + 1);
-        }
-        
-        return digitCounts;
-    }
-
-    private static void printDigitCounts(Map<Character, Integer> digitCounts) {
-        for (Map.Entry<Character, Integer> entry : digitCounts.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
+        Main main = new Main(new ViewableResult().getView());
+        main.menu();
     }
 }

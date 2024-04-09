@@ -1,6 +1,10 @@
 package ex03;
 
+import java.io.*;
+
 public interface View {
-    public void viewInit();
-    public void viewShow();
+    void viewInit();
+    void viewShow();
+    void viewSave() throws IOException;
+    void viewRestore() throws Exception;
 }

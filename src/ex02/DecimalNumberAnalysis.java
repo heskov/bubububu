@@ -30,4 +30,16 @@ public class DecimalNumberAnalysis {
         result.append("+--------+-----------+\n");
         return result.toString();
     }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public HashMap<Character, Integer> getDigitCounts() {
+        return digitCounts;
+    }
+
+    public void setDigitCounts(HashMap<Character, Integer> digitCounts) {
+        this.digitCounts = digitCounts;
+    }
 }
