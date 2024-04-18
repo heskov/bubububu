@@ -34,7 +34,7 @@ public class DigitCount {
                     if (beforePreviousDigitCountMap.isEmpty()) {
                         System.out.println("Не було введено жодного числа або немає передостанньої таблиці результатів.");
                     } else {
-                        System.out.println("Попередня таблиця результатів:");
+                        System.out.println("Попередня таблиц/я результатів:");
                         printDigitCountTable(beforePreviousDigitCountMap);
                     }
                     break;
