@@ -1,45 +1,22 @@
 package ex04;
 
-import java.util.Scanner;
+import java.util.Stack;
 
-public class TableOutput {
-    public static void main(String[] args) {
-        // Створення об'єкта Scanner для зчитування введення користувача
-        Scanner scanner = new Scanner(System.in);
+// Class for implementing undo functionality
+class UndoManager {
+    private Stack<Command> commandStack = new Stack<>();
 
-        // Запит у користувача на введення числа
-        System.out.print("Введіть ціле число: ");
-        int number = scanner.nextInt();
-
-        // Закриття об'єкта Scanner
-        scanner.close();
-
-        // Викликаємо метод для отримання рядка десяткового представлення
-        String decimalRepresentation = DecimalRepresentation.decimalRepresentation(number);
-
-        // Викликаємо метод для виведення результату у вигляді таблиці
-        printTable(decimalRepresentation);
+    public void executeCommand(Command command) {
+        command.execute();
+        commandStack.push(command);
     }
 
-    // Метод для виведення результату у вигляді таблиці
-    public static void printTable(String decimalRepresentation) {
-        // Виведення заголовка таблиці
-        System.out.println("Десяткове представлення числа:");
-        System.out.println("+-------+------------+");
-        System.out.println("| Цифра | Частота    |");
-        System.out.println("+-------+------------+");
-
-        // Тут розділити рядок decimalRepresentation на окремі числа та їх частоти
-        // та вивести їх у вигляді таблиці
-        String[] parts = decimalRepresentation.split("\\|");
-        for (String part : parts) {
-            String[] pair = part.trim().split(":");
-            int digit = Integer.parseInt(pair[0]);
-            int frequency = Integer.parseInt(pair[1]);
-            System.out.printf("|   %d   |     %d      |\n", digit, frequency);
+    public void undo() {
+        if (!commandStack.isEmpty()) {
+            Command command = commandStack.pop();
+            command.undo();
+        } else {
+            System.out.println("No more commands to undo.");
         }
-
-        // Виведення закриваючого рядка таблиці
-        System.out.println("+-------+------------+");
     }
 }
