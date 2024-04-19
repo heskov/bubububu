@@ -49,11 +49,13 @@ public class DecimalRepresentation {
 
             qwe[d]++;
         }
-
+        System.out.println("+" + "-".repeat(8) + "+-" + "-".repeat(12) + "+");
+        System.out.printf("| %-7s| %-11s |\n", "Число", "Кількість");
         for (int i = 0; i < 10; i++) {
-            System.out.printf("%d: %d |", i, qwe[i]);
+            System.out.println("+" + "-".repeat(8) + "+-" + "-".repeat(12) + "+");
+            System.out.printf("| %-7d| %-11d |\n", i, qwe[i]);
         }
-        
+        System.out.println("+" + "-".repeat(8) + "+-" + "-".repeat(12) + "+");
         System.out.println(" ");
         // Видалення зайвих символів (" + ") з кінця рядка
         if (result.length() > 0) {
