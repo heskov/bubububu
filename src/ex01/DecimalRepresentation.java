@@ -1,15 +1,18 @@
-package ex04;
+package ex01;
 
-import java.io.Serializable;
+
 import java.util.Scanner;
+import ex04.CommandHistory;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class DecimalRepresentation implements Serializable {
+public class DecimalRepresentation {
     private static final CommandHistory commandHistory = new CommandHistory();
     private static String currentTable = "";
 
     public static void main(String[] args) {
         String restoredTable = TableHandler.restoreTable();
-        System.out.println("Restored Table:");
+        System.out.println("Відновлена таблиця:");
         System.out.println(restoredTable);
         Scanner scanner = new Scanner(System.in);
 
@@ -34,7 +37,7 @@ public class DecimalRepresentation implements Serializable {
                     break;
                 case 3:
                     restoredTable = TableHandler.restoreTable();
-                    System.out.println("Restored Table:");
+                    System.out.println("Відновлена таблиця:");
                     System.out.println(restoredTable);
                     break;
                 case 4:
@@ -99,9 +102,23 @@ public class DecimalRepresentation implements Serializable {
             result.delete(result.length() - 3, result.length());
         }
 
+        // Зберегти виведену таблицю у файл
+        saveTableToFile(result.toString());
+
         // Зберегти поточну таблицю в історію команд
         commandHistory.push(result.toString());
 
         return result.toString();
+
+    }
+
+    public static void saveTableToFile(String table) {
+        try (FileWriter writer = new FileWriter("output_table.txt")) {
+            writer.write(table);
+            System.out.println("Таблицю успішно збережено у файлі 'output_table.txt'.");
+        } catch (IOException e) {
+            System.err.println("Помилка при збереженні таблиці в файл: " + e.getMessage());
+        }
+
     }
 }
