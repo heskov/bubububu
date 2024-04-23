@@ -1,17 +1,14 @@
 package ex01;
 
-
 import java.util.Scanner;
-import ex04.CommandHistory;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class DecimalRepresentation {
     private static final CommandHistory commandHistory = new CommandHistory();
     private static String currentTable = "";
+    private static final FileTableHandler tableHandler = TableHandlerFactory.createTableHandler();
 
     public static void main(String[] args) {
-        String restoredTable = TableHandler.restoreTable();
+        String restoredTable = tableHandler.restoreTable();
         System.out.println("Відновлена таблиця:");
         System.out.println(restoredTable);
         Scanner scanner = new Scanner(System.in);
@@ -33,10 +30,10 @@ public class DecimalRepresentation {
                     currentTable = decimalRepresentation(number);
                     break;
                 case 2:
-                    TableHandler.saveTable(currentTable);
+                    tableHandler.saveTable(currentTable);
                     break;
                 case 3:
-                    restoredTable = TableHandler.restoreTable();
+                    restoredTable = tableHandler.restoreTable();
                     System.out.println("Відновлена таблиця:");
                     System.out.println(restoredTable);
                     break;
@@ -54,7 +51,7 @@ public class DecimalRepresentation {
 
         scanner.close();
     }
-
+    
     public static String decimalRepresentation(int number) {
         StringBuilder result = new StringBuilder();
         int divisor = 1;
@@ -103,22 +100,11 @@ public class DecimalRepresentation {
         }
 
         // Зберегти виведену таблицю у файл
-        saveTableToFile(result.toString());
+        tableHandler.saveTable(result.toString());
 
         // Зберегти поточну таблицю в історію команд
         commandHistory.push(result.toString());
 
         return result.toString();
-
-    }
-
-    public static void saveTableToFile(String table) {
-        try (FileWriter writer = new FileWriter("output_table.txt")) {
-            writer.write(table);
-            System.out.println("Таблицю успішно збережено у файлі 'output_table.txt'.");
-        } catch (IOException e) {
-            System.err.println("Помилка при збереженні таблиці в файл: " + e.getMessage());
-        }
-
     }
 }

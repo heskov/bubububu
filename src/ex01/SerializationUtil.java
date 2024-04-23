@@ -1,4 +1,4 @@
-package ex04;
+package ex01;
 
 import java.io.*;
 
